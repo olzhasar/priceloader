@@ -34,10 +34,17 @@ func main() {
 		os.Exit(1)
 	}
 
+	tickers := flag.Args()
+	if len(tickers) == 0 {
+		fmt.Println("At least one ticker symbol is required")
+		flag.Usage()
+		os.Exit(1)
+	}
+
 	priceStore := store.NewSQLPriceStore(dbAbsPath)
 	loader := loader.NewYahooLoader()
 
-	err = update.UpdateMultiple(loader, priceStore, "AAPL", "MSFT", "GOOG")
+	err = update.UpdateMultiple(loader, priceStore, tickers...)
 
 	if err != nil {
 		fmt.Println("Error updating prices: ", err)
