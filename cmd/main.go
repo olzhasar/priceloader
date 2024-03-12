@@ -23,11 +23,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := os.Stat(dbPath); os.IsNotExist(err) {
-		fmt.Println("db file does not exist")
-		os.Exit(1)
-	}
-
 	dbAbsPath, err := filepath.Abs(dbPath)
 	if err != nil {
 		fmt.Println("Invalid path: ", err)
