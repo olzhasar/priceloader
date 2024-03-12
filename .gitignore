@@ -22,3 +22,5 @@ go.work
 
 *.db
 *.sqlite3
+
+priceloader
