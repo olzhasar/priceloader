@@ -12,11 +12,11 @@ import (
 
 func TestUpdateMultiple(t *testing.T) {
 	all_prices := []price.Price{
-		price.Price{Symbol: "AAPL", Date: time.Date(2024, 1, 1, 0, 0, 0, 0, time.UTC), Open: dec.New(100, 0), High: dec.New(100, 0), Low: dec.New(100, 0), Close: dec.New(100, 0), Volume: 1111},
-		price.Price{Symbol: "AAPL", Date: time.Date(2024, 1, 2, 0, 0, 0, 0, time.UTC), Open: dec.New(101, 0), High: dec.New(101, 0), Low: dec.New(101, 0), Close: dec.New(101, 0), Volume: 1111},
-		price.Price{Symbol: "GOOGL", Date: time.Date(2024, 1, 1, 0, 0, 0, 0, time.UTC), Open: dec.New(102, 0), High: dec.New(102, 0), Low: dec.New(102, 0), Close: dec.New(102, 0), Volume: 1111},
-		price.Price{Symbol: "GOOGL", Date: time.Date(2024, 1, 2, 0, 0, 0, 0, time.UTC), Open: dec.New(103, 0), High: dec.New(103, 0), Low: dec.New(103, 0), Close: dec.New(103, 0), Volume: 1111},
-		price.Price{Symbol: "MSFT", Date: time.Date(2024, 1, 2, 0, 0, 0, 0, time.UTC), Open: dec.New(104, 0), High: dec.New(104, 0), Low: dec.New(104, 0), Close: dec.New(104, 0), Volume: 1111},
+		{Symbol: "AAPL", Date: time.Date(2024, 1, 1, 0, 0, 0, 0, time.UTC), Open: dec.New(100, 0), High: dec.New(100, 0), Low: dec.New(100, 0), Close: dec.New(100, 0), Volume: 1111},
+		{Symbol: "AAPL", Date: time.Date(2024, 1, 2, 0, 0, 0, 0, time.UTC), Open: dec.New(101, 0), High: dec.New(101, 0), Low: dec.New(101, 0), Close: dec.New(101, 0), Volume: 1111},
+		{Symbol: "GOOGL", Date: time.Date(2024, 1, 1, 0, 0, 0, 0, time.UTC), Open: dec.New(102, 0), High: dec.New(102, 0), Low: dec.New(102, 0), Close: dec.New(102, 0), Volume: 1111},
+		{Symbol: "GOOGL", Date: time.Date(2024, 1, 2, 0, 0, 0, 0, time.UTC), Open: dec.New(103, 0), High: dec.New(103, 0), Low: dec.New(103, 0), Close: dec.New(103, 0), Volume: 1111},
+		{Symbol: "MSFT", Date: time.Date(2024, 1, 2, 0, 0, 0, 0, time.UTC), Open: dec.New(104, 0), High: dec.New(104, 0), Low: dec.New(104, 0), Close: dec.New(104, 0), Volume: 1111},
 	}
 	prices_map := map[string][]price.Price{
 		"AAPL":  all_prices[0:2],
@@ -59,4 +59,8 @@ func (s *StubPriceStore) Persist(prices []price.Price) error {
 
 func (s *StubPriceStore) GetPrices() []price.Price {
 	return s.prices
+}
+
+func (s *StubPriceStore) Close() error {
+	return nil
 }

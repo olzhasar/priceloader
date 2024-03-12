@@ -41,7 +41,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	priceStore := store.NewSQLPriceStore(dbAbsPath)
+	priceStore, err := store.NewSQLPriceStore(dbAbsPath)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer priceStore.Close()
+
 	loader := loader.NewYahooLoader()
 
 	err = update.UpdateMultiple(loader, priceStore, tickers...)
