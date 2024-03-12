@@ -63,13 +63,13 @@ func (s *SQLPriceStore) Persist(prices []price.Price) error {
 func (s *SQLPriceStore) createTable() error {
 	sqlStmt := `CREATE TABLE IF NOT EXISTS ` + PRICE_TABLE_NAME + ` (
 	id integer not null primary key,
-	symbol varchar(10) not null,
-	date date not null,
-	open decimal not null,
-	high decimal not null,
-	low decimal not null,
-	close decimal not null,
-	volume bigint not null,
+	symbol text	 not null,
+	date text not null,
+	open numeric not null,
+	high numeric not null,
+	low numeric not null,
+	close numeric not null,
+	volume integer not null,
 	CONSTRAINT "uc_symbol_date" UNIQUE ("symbol", "date")
 	);`
 
