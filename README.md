@@ -4,6 +4,10 @@ This is a simple CLI utility to maintain a local SQLite database of daily stock 
 
 Data is being fetched from Yahoo Finance using the [finance-go](github.com/piquette/finance-go) library.
 
+## Requirements
+
+- Go 1.22+
+
 ## Installation
 
 Build the binary using the provided Makefile:
